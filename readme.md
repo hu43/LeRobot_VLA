@@ -1,5 +1,7 @@
 ## Updates
 
+点Releases查看最新配置，主页的是老的Xlerobot配置，安装包Releases的才是好用的，上面也写了教程的
+
 This folder mimics the official lerobot folder with XLeRobot robot file, configs and demo codes.
 
 - SO100/SO101 control codes: These codes should be compatible to both SO100 and SO101, even if you just keep the name in the codes as so100. 
