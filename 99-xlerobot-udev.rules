@@ -1,0 +1,17 @@
+# XLeRobot stable device symlinks — keyed on physical USB port (ID_PATH).
+# Survives /dev/video* and /dev/ttyACM* renumbering after replug/re-enumeration.
+#
+# Install:
+#   sudo cp 99-xlerobot-udev.rules /etc/udev/rules.d/99-xlerobot.rules
+#   sudo udevadm control --reload-rules && sudo udevadm trigger
+# Verify:
+#   ls -l /dev/left_wrist_cam /dev/right_wrist_cam /dev/head_cam /dev/left_arm /dev/right_arm
+
+# Cameras (capture node only: index==0, so we never grab the metadata node)
+SUBSYSTEM=="video4linux", KERNEL=="video[0-9]*", ATTR{index}=="0", ENV{ID_PATH}=="pci-0000:0a:00.0-usb-0:6:1.0", SYMLINK+="left_wrist_cam"
+SUBSYSTEM=="video4linux", KERNEL=="video[0-9]*", ATTR{index}=="0", ENV{ID_PATH}=="pci-0000:0a:00.0-usb-0:5.1:1.0", SYMLINK+="right_wrist_cam"
+SUBSYSTEM=="video4linux", KERNEL=="video[0-9]*", ATTR{index}=="0", ENV{ID_PATH}=="pci-0000:0a:00.0-usb-0:5.4:1.0", SYMLINK+="head_cam"
+
+# Motor buses (SO-101 left arm on port1, right arm on port2)
+SUBSYSTEM=="tty", KERNEL=="ttyACM*", ENV{ID_PATH}=="pci-0000:0a:00.0-usb-0:5.2:1.0", SYMLINK+="left_arm"
+SUBSYSTEM=="tty", KERNEL=="ttyACM*", ENV{ID_PATH}=="pci-0000:0a:00.0-usb-0:5.3:1.0", SYMLINK+="right_arm"
