@@ -1,0 +1,2 @@
+[Wed Sep 23 09:40:01 AM CST 2026] Starting SmolVLA training on 1x RTX 5090 GPU1 (bf16, batch=8)
+Output: /home/zhoulin/hu/lerobot/pi05/output_smolvla_1x5090_20260923_094001
